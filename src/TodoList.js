@@ -1,6 +1,7 @@
 import React from 'react';
 import {Button, Input ,List} from 'antd';
 import store from "./store";
+import {CHANGE_INPUT_VALUE, ADD_LIST_ITEM, DELETE_TODO_ITEM} from './store/actionTypes';
 const styles = {
     todoList: {marginLeft:'30px',marginTop:'30px'}
 };
@@ -42,20 +43,20 @@ class TodoList extends React.Component{
     }
     handleInputChange(e){
         const action = {
-            type: 'input_value_change',
+            type: CHANGE_INPUT_VALUE,
             value: e.target.value
         }
         store.dispatch(action);
     }
     handleSubmit(){
         const action = {
-            type: 'add_list_item'
+            type: ADD_LIST_ITEM
         }
         store.dispatch(action);
     }
     handleItemDelete(index){
         const action = {
-            type:'delete_todo_item',
+            type:DELETE_TODO_ITEM,
             index
         }
         store.dispatch(action)
