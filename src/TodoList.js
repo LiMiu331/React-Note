@@ -1,6 +1,9 @@
 import React from 'react';
 import {Button, Input ,List} from 'antd';
 import store from "./store";
+const styles = {
+    todoList: {marginLeft:'30px',marginTop:'30px'}
+};
 class TodoList extends React.Component{
     constructor(props) {
         super(props);
@@ -12,7 +15,7 @@ class TodoList extends React.Component{
     }
     render() {
         return (
-            <div className={'todo-list'} style={{marginLeft:'30px',marginTop:'30px'}}>
+            <div className={'todo-list'} style={styles.todoList}>
                 <div className={'todo-footer'}>
                     <Input placeholder={'请输入'}
                            style={{width:'300px'}}
@@ -51,7 +54,7 @@ class TodoList extends React.Component{
         store.dispatch(action);
     }
     storeChange(){
-        this.setState(store.getState())
+        this.setState(store.getState());
     }
 }
 
