@@ -1,7 +1,8 @@
 import React from 'react';
 import store from "./store";
-import {getAddItemAction, getDeleteItemAction, getInputChangeAction} from './store/actionCreators'
+import {getAddItemAction, getDeleteItemAction, getInputChangeAction, initListAction} from './store/actionCreators'
 import TodoListUI from './TodoListUI';
+import axios from 'axios';
 class TodoList extends React.Component{
     constructor(props) {
         super(props);
@@ -23,6 +24,14 @@ class TodoList extends React.Component{
             />
         )
     }
+    componentDidMount() {
+        axios.get('/list.json').then((res)=>{
+            const data = res.data;
+            const action = initListAction(data);
+            store.dispatch(action);
+        })
+    }
+
     handleInputChange(e){
         const action = getInputChangeAction(e.target.value)
         store.dispatch(action);
